@@ -1,0 +1,306 @@
+package org.kopter.spiritplugin;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityCombustEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.plugin.Plugin;
+
+public class SoulListener implements Listener {
+
+    private final Plugin plugin;
+
+    public SoulListener(Plugin plugin) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         * 4: aload_0
+         * 5: aload_1
+         * 6: putfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 9: return
+         *  */
+        // </editor-fold>
+    }
+
+    private void setCooldown(Player player) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: invokestatic  #13                 // Method java/lang/System.currentTimeMillis:()J
+         * 3: aload_0
+         * 4: getfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 7: invokeinterface #19,  1           // InterfaceMethod org/bukkit/plugin/Plugin.getConfig:()Lorg/bukkit/configuration/file/FileConfiguration;
+         * 12: ldc           #25                 // String soul_warner.cooldown
+         * 14: sipush        300
+         * 17: invokevirtual #27                 // Method org/bukkit/configuration/file/FileConfiguration.getInt:(Ljava/lang/String;I)I
+         * 20: i2l
+         * 21: ldc2_w        #33                 // long 1000l
+         * 24: lmul
+         * 25: ladd
+         * 26: lstore_2
+         * 27: aload_1
+         * 28: ldc           #35                 // String soul_warner_cooldown
+         * 30: new           #37                 // class org/bukkit/metadata/FixedMetadataValue
+         * 33: dup
+         * 34: aload_0
+         * 35: getfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 38: lload_2
+         * 39: invokestatic  #39                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+         * 42: invokespecial #45                 // Method org/bukkit/metadata/FixedMetadataValue."<init>":(Lorg/bukkit/plugin/Plugin;Ljava/lang/Object;)V
+         * 45: invokeinterface #48,  3           // InterfaceMethod org/bukkit/entity/Player.setMetadata:(Ljava/lang/String;Lorg/bukkit/metadata/MetadataValue;)V
+         * 50: return
+         *  */
+        // </editor-fold>
+    }
+
+    private boolean isOnCooldown(Player player) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_1
+         * 1: ldc           #35                 // String soul_warner_cooldown
+         * 3: invokeinterface #54,  2           // InterfaceMethod org/bukkit/entity/Player.hasMetadata:(Ljava/lang/String;)Z
+         * 8: ifne          13
+         * 11: iconst_0
+         * 12: ireturn
+         * 13: aload_1
+         * 14: ldc           #35                 // String soul_warner_cooldown
+         * 16: invokeinterface #58,  2           // InterfaceMethod org/bukkit/entity/Player.getMetadata:(Ljava/lang/String;)Ljava/util/List;
+         * 21: iconst_0
+         * 22: invokeinterface #62,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+         * 27: checkcast     #68                 // class org/bukkit/metadata/MetadataValue
+         * 30: invokeinterface #70,  1           // InterfaceMethod org/bukkit/metadata/MetadataValue.asLong:()J
+         * 35: lstore_2
+         * 36: invokestatic  #13                 // Method java/lang/System.currentTimeMillis:()J
+         * 39: lload_2
+         * 40: lcmp
+         * 41: ifge          48
+         * 44: iconst_1
+         * 45: goto          49
+         * 48: iconst_0
+         * 49: ireturn
+         *  */
+        // </editor-fold>
+    }
+
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_1
+         * 1: invokevirtual #73                 // Method org/bukkit/event/player/PlayerInteractEvent.getPlayer:()Lorg/bukkit/entity/Player;
+         * 4: astore_2
+         * 5: aload_1
+         * 6: invokevirtual #79                 // Method org/bukkit/event/player/PlayerInteractEvent.getItem:()Lorg/bukkit/inventory/ItemStack;
+         * 9: astore_3
+         * 10: aload_3
+         * 11: ifnull        24
+         * 14: aload_3
+         * 15: invokevirtual #83                 // Method org/bukkit/inventory/ItemStack.getType:()Lorg/bukkit/Material;
+         * 18: getstatic     #89                 // Field org/bukkit/Material.COMPASS:Lorg/bukkit/Material;
+         * 21: if_acmpeq     25
+         * 24: return
+         * 25: aload_3
+         * 26: invokevirtual #95                 // Method org/bukkit/inventory/ItemStack.getItemMeta:()Lorg/bukkit/inventory/meta/ItemMeta;
+         * 29: astore        4
+         * 31: aload         4
+         * 33: ifnull        58
+         * 36: aload         4
+         * 38: invokeinterface #99,  1           // InterfaceMethod org/bukkit/inventory/meta/ItemMeta.hasCustomModelData:()Z
+         * 43: ifeq          58
+         * 46: aload         4
+         * 48: invokeinterface #105,  1          // InterfaceMethod org/bukkit/inventory/meta/ItemMeta.getCustomModelData:()I
+         * 53: bipush        105
+         * 55: if_icmpeq     59
+         * 58: return
+         * 59: aload_2
+         * 60: invokeinterface #109,  1          // InterfaceMethod org/bukkit/entity/Player.isOp:()Z
+         * 65: ifeq          83
+         * 68: aload_2
+         * 69: invokeinterface #112,  1          // InterfaceMethod org/bukkit/entity/Player.isSneaking:()Z
+         * 74: ifeq          83
+         * 77: aload_0
+         * 78: aload_2
+         * 79: invokevirtual #115                // Method checkNearbyPlayers:(Lorg/bukkit/entity/Player;)V
+         * 82: return
+         * 83: aload_0
+         * 84: aload_2
+         * 85: invokevirtual #119                // Method isOnCooldown:(Lorg/bukkit/entity/Player;)Z
+         * 88: ifeq          165
+         * 91: aload_2
+         * 92: ldc           #35                 // String soul_warner_cooldown
+         * 94: invokeinterface #58,  2           // InterfaceMethod org/bukkit/entity/Player.getMetadata:(Ljava/lang/String;)Ljava/util/List;
+         * 99: iconst_0
+         * 100: invokeinterface #62,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+         * 105: checkcast     #68                 // class org/bukkit/metadata/MetadataValue
+         * 108: invokeinterface #70,  1           // InterfaceMethod org/bukkit/metadata/MetadataValue.asLong:()J
+         * 113: lstore        5
+         * 115: lload         5
+         * 117: invokestatic  #13                 // Method java/lang/System.currentTimeMillis:()J
+         * 120: lsub
+         * 121: ldc2_w        #33                 // long 1000l
+         * 124: ldiv
+         * 125: lstore        7
+         * 127: aload_2
+         * 128: bipush        38
+         * 130: aload_0
+         * 131: getfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 134: invokeinterface #19,  1           // InterfaceMethod org/bukkit/plugin/Plugin.getConfig:()Lorg/bukkit/configuration/file/FileConfiguration;
+         * 139: ldc           #123                // String soul_warner.messages.cooldown
+         * 141: ldc           #125                // String &cPlease wait %seconds% seconds!
+         * 143: invokevirtual #127                // Method org/bukkit/configuration/file/FileConfiguration.getString:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+         * 146: ldc           #131                // String %seconds%
+         * 148: lload         7
+         * 150: invokestatic  #133                // Method java/lang/String.valueOf:(J)Ljava/lang/String;
+         * 153: invokevirtual #138                // Method java/lang/String.replace:(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+         * 156: invokestatic  #142                // Method org/bukkit/ChatColor.translateAlternateColorCodes:(CLjava/lang/String;)Ljava/lang/String;
+         * 159: invokeinterface #148,  2          // InterfaceMethod org/bukkit/entity/Player.sendMessage:(Ljava/lang/String;)V
+         * 164: return
+         * 165: aload_0
+         * 166: aload_2
+         * 167: invokevirtual #152                // Method setCooldown:(Lorg/bukkit/entity/Player;)V
+         * 170: aload_0
+         * 171: aload_2
+         * 172: invokevirtual #115                // Method checkNearbyPlayers:(Lorg/bukkit/entity/Player;)V
+         * 175: return
+         *  */
+        // </editor-fold>
+    }
+
+    private void checkNearbyPlayers(Player player) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: getfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 4: invokeinterface #19,  1           // InterfaceMethod org/bukkit/plugin/Plugin.getConfig:()Lorg/bukkit/configuration/file/FileConfiguration;
+         * 9: ldc           #155                // String soul_warner.range_alert
+         * 11: bipush        50
+         * 13: invokevirtual #27                 // Method org/bukkit/configuration/file/FileConfiguration.getInt:(Ljava/lang/String;I)I
+         * 16: istore_2
+         * 17: aload_0
+         * 18: getfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 21: invokeinterface #19,  1           // InterfaceMethod org/bukkit/plugin/Plugin.getConfig:()Lorg/bukkit/configuration/file/FileConfiguration;
+         * 26: ldc           #157                // String soul_warner.messages.alert
+         * 28: ldc           #159                // String &4&lDANGER! &cA player is within %distance% blocks!
+         * 30: invokevirtual #127                // Method org/bukkit/configuration/file/FileConfiguration.getString:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+         * 33: astore_3
+         * 34: aload_0
+         * 35: getfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 38: invokeinterface #19,  1           // InterfaceMethod org/bukkit/plugin/Plugin.getConfig:()Lorg/bukkit/configuration/file/FileConfiguration;
+         * 43: ldc           #161                // String soul_warner.messages.none
+         * 45: ldc           #163                // String &aNo players detected nearby!
+         * 47: invokevirtual #127                // Method org/bukkit/configuration/file/FileConfiguration.getString:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+         * 50: astore        4
+         * 52: aload_1
+         * 53: invokeinterface #165,  1          // InterfaceMethod org/bukkit/entity/Player.getLocation:()Lorg/bukkit/Location;
+         * 58: astore        5
+         * 60: iconst_0
+         * 61: istore        6
+         * 63: invokestatic  #169                // Method org/bukkit/Bukkit.getOnlinePlayers:()Ljava/util/Collection;
+         * 66: invokeinterface #175,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+         * 71: astore        7
+         * 73: aload         7
+         * 75: invokeinterface #181,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+         * 80: ifeq          158
+         * 83: aload         7
+         * 85: invokeinterface #186,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+         * 90: checkcast     #49                 // class org/bukkit/entity/Player
+         * 93: astore        8
+         * 95: aload         8
+         * 97: aload_1
+         * 98: if_acmpne     104
+         * 101: goto          73
+         * 104: aload         5
+         * 106: aload         8
+         * 108: invokeinterface #165,  1          // InterfaceMethod org/bukkit/entity/Player.getLocation:()Lorg/bukkit/Location;
+         * 113: invokevirtual #190                // Method org/bukkit/Location.distance:(Lorg/bukkit/Location;)D
+         * 116: dstore        9
+         * 118: dload         9
+         * 120: iload_2
+         * 121: i2d
+         * 122: dcmpg
+         * 123: ifgt          155
+         * 126: aload_1
+         * 127: bipush        38
+         * 129: aload_3
+         * 130: ldc           #196                // String %distance%
+         * 132: dload         9
+         * 134: d2i
+         * 135: invokestatic  #198                // Method java/lang/String.valueOf:(I)Ljava/lang/String;
+         * 138: invokevirtual #138                // Method java/lang/String.replace:(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+         * 141: invokestatic  #142                // Method org/bukkit/ChatColor.translateAlternateColorCodes:(CLjava/lang/String;)Ljava/lang/String;
+         * 144: invokeinterface #148,  2          // InterfaceMethod org/bukkit/entity/Player.sendMessage:(Ljava/lang/String;)V
+         * 149: iconst_1
+         * 150: istore        6
+         * 152: goto          158
+         * 155: goto          73
+         * 158: iload         6
+         * 160: ifne          176
+         * 163: aload_1
+         * 164: bipush        38
+         * 166: aload         4
+         * 168: invokestatic  #142                // Method org/bukkit/ChatColor.translateAlternateColorCodes:(CLjava/lang/String;)Ljava/lang/String;
+         * 171: invokeinterface #148,  2          // InterfaceMethod org/bukkit/entity/Player.sendMessage:(Ljava/lang/String;)V
+         * 176: return
+         *  */
+        // </editor-fold>
+    }
+
+    @EventHandler
+    public void onEntityCombust(EntityCombustEvent event) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_1
+         * 1: invokevirtual #201                // Method org/bukkit/event/entity/EntityCombustEvent.getEntity:()Lorg/bukkit/entity/Entity;
+         * 4: astore_3
+         * 5: aload_3
+         * 6: instanceof    #49                 // class org/bukkit/entity/Player
+         * 9: ifeq          55
+         * 12: aload_3
+         * 13: checkcast     #49                 // class org/bukkit/entity/Player
+         * 16: astore_2
+         * 17: aload_2
+         * 18: invokeinterface #207,  1          // InterfaceMethod org/bukkit/entity/Player.getInventory:()Lorg/bukkit/inventory/PlayerInventory;
+         * 23: aload_0
+         * 24: getfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 27: invokeinterface #19,  1           // InterfaceMethod org/bukkit/plugin/Plugin.getConfig:()Lorg/bukkit/configuration/file/FileConfiguration;
+         * 32: ldc           #211                // String soul_item
+         * 34: ldc           #213                // String HEART_OF_THE_SEA
+         * 36: invokevirtual #127                // Method org/bukkit/configuration/file/FileConfiguration.getString:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+         * 39: invokestatic  #215                // Method org/bukkit/Material.getMaterial:(Ljava/lang/String;)Lorg/bukkit/Material;
+         * 42: invokeinterface #219,  2          // InterfaceMethod org/bukkit/inventory/PlayerInventory.contains:(Lorg/bukkit/Material;)Z
+         * 47: ifeq          55
+         * 50: aload_1
+         * 51: iconst_1
+         * 52: invokevirtual #225                // Method org/bukkit/event/entity/EntityCombustEvent.setCancelled:(Z)V
+         * 55: return
+         *  */
+        // </editor-fold>
+    }
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageEvent event) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_1
+         * 1: invokevirtual #229                // Method org/bukkit/event/entity/EntityDamageEvent.getEntity:()Lorg/bukkit/entity/Entity;
+         * 4: astore_3
+         * 5: aload_3
+         * 6: instanceof    #49                 // class org/bukkit/entity/Player
+         * 9: ifeq          55
+         * 12: aload_3
+         * 13: checkcast     #49                 // class org/bukkit/entity/Player
+         * 16: astore_2
+         * 17: aload_2
+         * 18: invokeinterface #207,  1          // InterfaceMethod org/bukkit/entity/Player.getInventory:()Lorg/bukkit/inventory/PlayerInventory;
+         * 23: aload_0
+         * 24: getfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 27: invokeinterface #19,  1           // InterfaceMethod org/bukkit/plugin/Plugin.getConfig:()Lorg/bukkit/configuration/file/FileConfiguration;
+         * 32: ldc           #211                // String soul_item
+         * 34: ldc           #213                // String HEART_OF_THE_SEA
+         * 36: invokevirtual #127                // Method org/bukkit/configuration/file/FileConfiguration.getString:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+         * 39: invokestatic  #215                // Method org/bukkit/Material.getMaterial:(Ljava/lang/String;)Lorg/bukkit/Material;
+         * 42: invokeinterface #219,  2          // InterfaceMethod org/bukkit/inventory/PlayerInventory.contains:(Lorg/bukkit/Material;)Z
+         * 47: ifeq          55
+         * 50: aload_1
+         * 51: iconst_1
+         * 52: invokevirtual #232                // Method org/bukkit/event/entity/EntityDamageEvent.setCancelled:(Z)V
+         * 55: return
+         *  */
+        // </editor-fold>
+    }
+}
