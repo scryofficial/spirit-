@@ -1,0 +1,87 @@
+package org.kopter.spiritplugin;
+
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.plugin.Plugin;
+
+public class Shard implements Listener {
+
+    private final Plugin plugin;
+
+    public Shard(Plugin plugin) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_0
+         * 1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         * 4: aload_0
+         * 5: aload_1
+         * 6: putfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 9: invokestatic  #13                 // Method org/bukkit/Bukkit.getPluginManager:()Lorg/bukkit/plugin/PluginManager;
+         * 12: aload_0
+         * 13: aload_1
+         * 14: invokeinterface #19,  3           // InterfaceMethod org/bukkit/plugin/PluginManager.registerEvents:(Lorg/bukkit/event/Listener;Lorg/bukkit/plugin/Plugin;)V
+         * 19: return
+         *  */
+        // </editor-fold>
+    }
+
+    @EventHandler
+    public void onPlayerDeath(EntityDeathEvent event) {
+        // <editor-fold defaultstate="collapsed" desc="Compiled Code">
+        /* 0: aload_1
+         * 1: invokevirtual #25                 // Method org/bukkit/event/entity/EntityDeathEvent.getEntity:()Lorg/bukkit/entity/LivingEntity;
+         * 4: instanceof    #31                 // class org/bukkit/entity/Player
+         * 7: ifeq          135
+         * 10: aload_1
+         * 11: invokevirtual #25                 // Method org/bukkit/event/entity/EntityDeathEvent.getEntity:()Lorg/bukkit/entity/LivingEntity;
+         * 14: checkcast     #31                 // class org/bukkit/entity/Player
+         * 17: astore_2
+         * 18: aload_2
+         * 19: invokeinterface #33,  1           // InterfaceMethod org/bukkit/entity/Player.getKiller:()Lorg/bukkit/entity/Player;
+         * 24: astore_3
+         * 25: aload_3
+         * 26: ifnull        135
+         * 29: aload_0
+         * 30: getfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 33: invokeinterface #37,  1           // InterfaceMethod org/bukkit/plugin/Plugin.getConfig:()Lorg/bukkit/configuration/file/FileConfiguration;
+         * 38: astore        4
+         * 40: aload_2
+         * 41: invokeinterface #43,  1           // InterfaceMethod org/bukkit/entity/Player.getUniqueId:()Ljava/util/UUID;
+         * 46: astore        5
+         * 48: aload_3
+         * 49: invokeinterface #43,  1           // InterfaceMethod org/bukkit/entity/Player.getUniqueId:()Ljava/util/UUID;
+         * 54: astore        6
+         * 56: aload         4
+         * 58: aload         5
+         * 60: invokevirtual #47                 // Method java/util/UUID.toString:()Ljava/lang/String;
+         * 63: invokedynamic #53,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+         * 68: iconst_1
+         * 69: invokevirtual #57                 // Method org/bukkit/configuration/file/FileConfiguration.getBoolean:(Ljava/lang/String;Z)Z
+         * 72: ifeq          135
+         * 75: aload_0
+         * 76: getfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 79: checkcast     #63                 // class org/kopter/spiritplugin/SpiritPlugin
+         * 82: invokevirtual #65                 // Method org/kopter/spiritplugin/SpiritPlugin.createSoulShard:()Lorg/bukkit/inventory/ItemStack;
+         * 85: astore        7
+         * 87: aload_3
+         * 88: invokeinterface #69,  1           // InterfaceMethod org/bukkit/entity/Player.getWorld:()Lorg/bukkit/World;
+         * 93: aload_3
+         * 94: invokeinterface #73,  1           // InterfaceMethod org/bukkit/entity/Player.getLocation:()Lorg/bukkit/Location;
+         * 99: aload         7
+         * 101: invokeinterface #77,  3           // InterfaceMethod org/bukkit/World.dropItem:(Lorg/bukkit/Location;Lorg/bukkit/inventory/ItemStack;)Lorg/bukkit/entity/Item;
+         * 106: pop
+         * 107: aload         4
+         * 109: aload         5
+         * 111: invokevirtual #47                 // Method java/util/UUID.toString:()Ljava/lang/String;
+         * 114: invokedynamic #53,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+         * 119: iconst_0
+         * 120: invokestatic  #83                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+         * 123: invokevirtual #89                 // Method org/bukkit/configuration/file/FileConfiguration.set:(Ljava/lang/String;Ljava/lang/Object;)V
+         * 126: aload_0
+         * 127: getfield      #7                  // Field plugin:Lorg/bukkit/plugin/Plugin;
+         * 130: invokeinterface #93,  1           // InterfaceMethod org/bukkit/plugin/Plugin.saveConfig:()V
+         * 135: return
+         *  */
+        // </editor-fold>
+    }
+}
