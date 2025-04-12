@@ -1,0 +1,45 @@
+plugin.yml
+
+name: Spirit
+main: org.kopter.spiritplugin.SpiritPlugin
+version: 1.0
+api-version: '1.18'
+author: KopterHUN213
+
+commands:
+  getbow:
+    usage: /<command>
+    permission: soul.reload
+  getpickaxe:
+    usage: /<command>
+    permission: soul.reload
+  getshard:
+    usage: "/getshard"
+    permission: soul.reload
+  getwarner:
+    usage: "/getshard"
+    permission: soul.reloa  
+  getsword:
+    usage: "/getsword"
+    permission: soul.reload
+  sp:
+    usage: /sp [reload|chest <player>|list]
+    permission: soul.use
+
+  sp reload:
+    description: Reloads the Spirit plugin
+    permission: soul.reload
+
+  sp chest:
+    usage: /sp chest <player>
+    permission: soul.use
+
+  sp list:
+    usage: /sp list
+    permission: soul.use
+permissions:
+  soul.use:
+    default: true
+
+  soul.reload:
+    default: op
